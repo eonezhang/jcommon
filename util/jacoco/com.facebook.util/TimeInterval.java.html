@@ -99,7 +99,7 @@ public class TimeInterval {
   @JsonCreator
   private static TimeInterval fromJson(
     @JsonProperty(&quot;type&quot;) TimeIntervalType type,
-    @JsonProperty(&quot;length&quot;) int length
+    @JsonProperty(&quot;length&quot;) long length
   ) {
 <span class="fc bfc" id="L104" title="All 2 branches covered.">    if (type == null) {</span>
 <span class="fc bfc" id="L105" title="All 2 branches covered.">      if (length == 0) {</span>
