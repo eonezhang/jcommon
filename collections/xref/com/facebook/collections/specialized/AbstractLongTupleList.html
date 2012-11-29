@@ -196,7 +196,7 @@
 <a class="jxr_linenumber" name="186" href="#186">186</a> 
 <a class="jxr_linenumber" name="187" href="#187">187</a>   @Override
 <a class="jxr_linenumber" name="188" href="#188">188</a>   <strong class="jxr_keyword">public</strong> Iterator&lt;<strong class="jxr_keyword">long</strong>[]&gt; iterator() {
-<a class="jxr_linenumber" name="189" href="#189">189</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/facebook/collections/specialized/ColtHashSet.html">Iter</a>();
+<a class="jxr_linenumber" name="189" href="#189">189</a>     <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/facebook/collections/specialized/ColtLongHashSet.html">Iter</a>();
 <a class="jxr_linenumber" name="190" href="#190">190</a>   }
 <a class="jxr_linenumber" name="191" href="#191">191</a> 
 <a class="jxr_linenumber" name="192" href="#192">192</a>   <em class="jxr_javadoccomment">/**</em>
@@ -423,7 +423,7 @@
 <a class="jxr_linenumber" name="413" href="#413">413</a>     <strong class="jxr_keyword">return</strong> result;
 <a class="jxr_linenumber" name="414" href="#414">414</a>   }
 <a class="jxr_linenumber" name="415" href="#415">415</a> 
-<a class="jxr_linenumber" name="416" href="#416">416</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/facebook/collections/specialized/ColtHashSet.html">Iter</a> <strong class="jxr_keyword">implements</strong> Iterator&lt;<strong class="jxr_keyword">long</strong>[]&gt; {
+<a class="jxr_linenumber" name="416" href="#416">416</a>   <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/facebook/collections/specialized/ColtLongHashSet.html">Iter</a> <strong class="jxr_keyword">implements</strong> Iterator&lt;<strong class="jxr_keyword">long</strong>[]&gt; {
 <a class="jxr_linenumber" name="417" href="#417">417</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> position = getHeadIndex() / getTupleSize();
 <a class="jxr_linenumber" name="418" href="#418">418</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">long</strong>[] nextValue = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="419" href="#419">419</a> 

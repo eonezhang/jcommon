@@ -67,7 +67,7 @@
 <a class="jxr_linenumber" name="57" href="#57">57</a>  
 <a class="jxr_linenumber" name="58" href="#58">58</a>    @Override
 <a class="jxr_linenumber" name="59" href="#59">59</a>    <strong class="jxr_keyword">public</strong> Iterator&lt;Long&gt; iterator() {
-<a class="jxr_linenumber" name="60" href="#60">60</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/facebook/collections/specialized/ColtHashSet.html">Iter</a>();
+<a class="jxr_linenumber" name="60" href="#60">60</a>      <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../com/facebook/collections/specialized/ColtLongHashSet.html">Iter</a>();
 <a class="jxr_linenumber" name="61" href="#61">61</a>    }
 <a class="jxr_linenumber" name="62" href="#62">62</a>  
 <a class="jxr_linenumber" name="63" href="#63">63</a>    @Override
@@ -75,7 +75,7 @@
 <a class="jxr_linenumber" name="65" href="#65">65</a>      <strong class="jxr_keyword">return</strong> map.size();
 <a class="jxr_linenumber" name="66" href="#66">66</a>    }
 <a class="jxr_linenumber" name="67" href="#67">67</a>  
-<a class="jxr_linenumber" name="68" href="#68">68</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/facebook/collections/specialized/ColtHashSet.html">Iter</a> <strong class="jxr_keyword">implements</strong> Iterator&lt;Long&gt; {
+<a class="jxr_linenumber" name="68" href="#68">68</a>    <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../com/facebook/collections/specialized/ColtLongHashSet.html">Iter</a> <strong class="jxr_keyword">implements</strong> Iterator&lt;Long&gt; {
 <a class="jxr_linenumber" name="69" href="#69">69</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> IntArrayList mapKeyList = map.keys();
 <a class="jxr_linenumber" name="70" href="#70">70</a>  
 <a class="jxr_linenumber" name="71" href="#71">71</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> index = 0;
