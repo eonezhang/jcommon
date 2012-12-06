@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2012-12-06T14:28:48.155">
+<pmd version="4.3" timestamp="2012-12-06T14:53:38.889">
 <file name="/Users/srash/src/github/facebook/jcommon/target/checkout/data/src/main/java/com/facebook/data/types/NumberCachingDatum.java">
 <violation beginline="116" endline="118" begincolumn="9" endcolumn="7" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.facebook.data.types" class="NumberCachingDatum" method="computeTypeOfString" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
 Avoid empty catch blocks
