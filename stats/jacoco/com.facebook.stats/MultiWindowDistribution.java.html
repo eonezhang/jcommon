@@ -15,6 +15,7 @@
  */
 package com.facebook.stats;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 
@@ -32,94 +33,109 @@ public class MultiWindowDistribution implements WritableMultiWindowStat {
   private final QuantileDigest oneHour;
   private final QuantileDigest allTime;
 
-<span class="nc" id="L35">  public MultiWindowDistribution() {</span>
-<span class="nc" id="L36">    oneMinute = new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 60));</span>
-<span class="nc" id="L37">    tenMinutes = new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 600));</span>
-<span class="nc" id="L38">    oneHour = new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 3600));</span>
-<span class="nc" id="L39">    allTime = new QuantileDigest(0.01);</span>
-<span class="nc" id="L40">  }</span>
+  @VisibleForTesting
+  MultiWindowDistribution(
+    QuantileDigest oneMinute,
+    QuantileDigest tenMinutes,
+    QuantileDigest oneHour,
+    QuantileDigest allTime
+<span class="fc" id="L42">  ) {</span>
+<span class="fc" id="L43">    this.oneMinute = oneMinute;</span>
+<span class="fc" id="L44">    this.tenMinutes = tenMinutes;</span>
+<span class="fc" id="L45">    this.oneHour = oneHour;</span>
+<span class="fc" id="L46">    this.allTime = allTime;</span>
+<span class="fc" id="L47">  }</span>
+
+  public MultiWindowDistribution() {
+<span class="nc" id="L50">    this(</span>
+      new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 60)),
+      new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 600)),
+      new QuantileDigest(0.01, ExponentialDecay.computeAlpha(0.1, 3600)),
+      new QuantileDigest(0.01)
+    );
+<span class="nc" id="L56">  }</span>
 
   @Override
   public void add(long value) {
-<span class="nc" id="L44">    oneMinute.add(value);</span>
-<span class="nc" id="L45">    tenMinutes.add(value);</span>
-<span class="nc" id="L46">    oneHour.add(value);</span>
-<span class="nc" id="L47">    allTime.add(value);</span>
-<span class="nc" id="L48">  }</span>
+<span class="fc" id="L60">    oneMinute.add(value);</span>
+<span class="fc" id="L61">    tenMinutes.add(value);</span>
+<span class="fc" id="L62">    oneHour.add(value);</span>
+<span class="fc" id="L63">    allTime.add(value);</span>
+<span class="fc" id="L64">  }</span>
 
   public QuantileDigest getOneMinute() {
-<span class="nc" id="L51">    return oneMinute;</span>
+<span class="fc" id="L67">    return oneMinute;</span>
   }
 
   public QuantileDigest getTenMinutes() {
-<span class="nc" id="L55">    return tenMinutes;</span>
+<span class="fc" id="L71">    return tenMinutes;</span>
   }
 
   public QuantileDigest getOneHour() {
-<span class="nc" id="L59">    return oneHour;</span>
+<span class="fc" id="L75">    return oneHour;</span>
   }
 
   public QuantileDigest getAllTime() {
-<span class="nc" id="L63">    return allTime;</span>
+<span class="fc" id="L79">    return allTime;</span>
   }
 
   public Map&lt;Quantile, Long&gt; getOneMinuteQuantiles() {
-<span class="nc" id="L67">    return getQuantiles(oneMinute);</span>
+<span class="fc" id="L83">    return getQuantiles(oneMinute);</span>
   }
 
   public Map&lt;Quantile, Long&gt; getTenMinuteQuantiles() {
-<span class="nc" id="L71">    return getQuantiles(tenMinutes);</span>
+<span class="fc" id="L87">    return getQuantiles(tenMinutes);</span>
   }
 
   public Map&lt;Quantile, Long&gt; getOneHourQuantiles() {
-<span class="nc" id="L75">    return getQuantiles(oneHour);</span>
+<span class="fc" id="L91">    return getQuantiles(oneHour);</span>
   }
 
   public Map&lt;Quantile, Long&gt; getAllTimeQuantiles() {
-<span class="nc" id="L79">    return getQuantiles(allTime);</span>
+<span class="fc" id="L95">    return getQuantiles(allTime);</span>
   }
 
   private Map&lt;Quantile, Long&gt; getQuantiles(QuantileDigest digest) {
-<span class="nc" id="L83">    List&lt;Quantile&gt; keys = ImmutableList.of(P50, P75, P95, P99);</span>
-<span class="nc" id="L84">    List&lt;Long&gt; values = digest.getQuantiles(transform(keys, getQuantileFunction()));</span>
+<span class="fc" id="L99">    List&lt;Quantile&gt; keys = ImmutableList.of(P50, P75, P95, P99);</span>
+<span class="fc" id="L100">    List&lt;Long&gt; values = digest.getQuantiles(transform(keys, getQuantileFunction()));</span>
 
-<span class="nc" id="L86">    Iterator&lt;Quantile&gt; keyIterator = keys.iterator();</span>
-<span class="nc" id="L87">    Iterator&lt;Long&gt; valueIterator = values.iterator();</span>
+<span class="fc" id="L102">    Iterator&lt;Quantile&gt; keyIterator = keys.iterator();</span>
+<span class="fc" id="L103">    Iterator&lt;Long&gt; valueIterator = values.iterator();</span>
 
-<span class="nc" id="L89">    EnumMap&lt;Quantile, Long&gt; result = new EnumMap&lt;Quantile, Long&gt;(Quantile.class);</span>
-<span class="nc bnc" id="L90" title="All 4 branches missed.">    while (keyIterator.hasNext() &amp;&amp; valueIterator.hasNext()) {</span>
-<span class="nc" id="L91">      result.put(keyIterator.next(), valueIterator.next());</span>
+<span class="fc" id="L105">    EnumMap&lt;Quantile, Long&gt; result = new EnumMap&lt;Quantile, Long&gt;(Quantile.class);</span>
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">    while (keyIterator.hasNext() &amp;&amp; valueIterator.hasNext()) {</span>
+<span class="fc" id="L107">      result.put(keyIterator.next(), valueIterator.next());</span>
     }
 
-<span class="nc" id="L94">    return result;</span>
+<span class="fc" id="L110">    return result;</span>
   }
 
-<span class="nc" id="L97">  public enum Quantile {</span>
-<span class="nc" id="L98">    P50(&quot;p50&quot;, 0.5),</span>
-<span class="nc" id="L99">    P75(&quot;p75&quot;, 0.75),</span>
-<span class="nc" id="L100">    P95(&quot;p95&quot;, 0.95),</span>
-<span class="nc" id="L101">    P99(&quot;p99&quot;, 0.99);</span>
+<span class="pc" id="L113">  public enum Quantile {</span>
+<span class="fc" id="L114">    P50(&quot;p50&quot;, 0.5),</span>
+<span class="fc" id="L115">    P75(&quot;p75&quot;, 0.75),</span>
+<span class="fc" id="L116">    P95(&quot;p95&quot;, 0.95),</span>
+<span class="fc" id="L117">    P99(&quot;p99&quot;, 0.99);</span>
 
     private final String key;
     private final double quantile;
 
-<span class="nc" id="L106">    private Quantile(String key, double quantile) {</span>
-<span class="nc" id="L107">      this.key = key;</span>
-<span class="nc" id="L108">      this.quantile = quantile;</span>
-<span class="nc" id="L109">    }</span>
+<span class="fc" id="L122">    private Quantile(String key, double quantile) {</span>
+<span class="fc" id="L123">      this.key = key;</span>
+<span class="fc" id="L124">      this.quantile = quantile;</span>
+<span class="fc" id="L125">    }</span>
 
     public String getKey() {
-<span class="nc" id="L112">      return key;</span>
+<span class="fc" id="L128">      return key;</span>
     }
 
     public double getQuantile() {
-<span class="nc" id="L116">      return quantile;</span>
+<span class="fc" id="L132">      return quantile;</span>
     }
 
     public static Function&lt;Quantile, Double&gt; getQuantileFunction() {
-<span class="nc" id="L120">      return new Function&lt;Quantile, Double&gt;() {</span>
+<span class="fc" id="L136">      return new Function&lt;Quantile, Double&gt;() {</span>
         public Double apply(Quantile input) {
-<span class="nc" id="L122">          return input.getQuantile();</span>
+<span class="fc" id="L138">          return input.getQuantile();</span>
         }
       };
     }
