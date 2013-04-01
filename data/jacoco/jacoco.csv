@@ -11,7 +11,7 @@ jcommon data package,com.facebook.data.types,NumberCachingDatum.new Object() {..
 jcommon data package,com.facebook.data.types,StringDatum.SerDeImpl,12,15,0,0,4,5,0,3,0,3
 jcommon data package,com.facebook.data.types,WrappedDatum,96,28,19,1,17,8,22,4,12,4
 jcommon data package,com.facebook.data.types,BooleanDatum.SerDeImpl,12,15,0,0,4,5,0,3,0,3
-jcommon data package,com.facebook.data.types,StringDatum,34,92,8,10,9,20,12,14,5,12
+jcommon data package,com.facebook.data.types,StringDatum,40,97,8,16,10,21,13,16,6,11
 jcommon data package,com.facebook.data.types,NullDatum.SerDeImpl,3,3,0,0,2,1,2,1,2,1
 jcommon data package,com.facebook.data.types,ShortDatum.SerDeImpl,12,15,0,0,4,5,0,3,0,3
 jcommon data package,com.facebook.data.types,LongDatum.SerDeImpl,12,15,0,0,4,5,0,3,0,3

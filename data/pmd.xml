@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.3" timestamp="2012-12-06T14:53:38.889">
-<file name="/Users/srash/src/github/facebook/jcommon/target/checkout/data/src/main/java/com/facebook/data/types/NumberCachingDatum.java">
+<pmd version="4.3" timestamp="2013-04-01T12:41:13.142">
+<file name="/private/tmp/jcommon/target/checkout/data/src/main/java/com/facebook/data/types/NumberCachingDatum.java">
 <violation beginline="116" endline="118" begincolumn="9" endcolumn="7" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.facebook.data.types" class="NumberCachingDatum" method="computeTypeOfString" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
 Avoid empty catch blocks
 </violation>
@@ -8,8 +8,8 @@ Avoid empty catch blocks
 Avoid empty catch blocks
 </violation>
 </file>
-<file name="/Users/srash/src/github/facebook/jcommon/target/checkout/data/src/main/java/com/facebook/data/types/StringDatum.java">
-<violation beginline="44" endline="47" begincolumn="7" endcolumn="5" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.facebook.data.types" class="StringDatum" method="asBoolean" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
+<file name="/private/tmp/jcommon/target/checkout/data/src/main/java/com/facebook/data/types/StringDatum.java">
+<violation beginline="52" endline="55" begincolumn="7" endcolumn="5" rule="EmptyCatchBlock" ruleset="Basic Rules" package="com.facebook.data.types" class="StringDatum" method="asBoolean" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyCatchBlock" priority="3">
 Avoid empty catch blocks
 </violation>
 </file>
