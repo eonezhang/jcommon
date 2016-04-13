@@ -15,15 +15,14 @@
  */
 package com.facebook.stats;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.lang.IllegalArgumentException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.facebook.logging.Logger;
+import com.facebook.logging.LoggerImpl;
 
 /**
  * This was written to resemble some older libraries.  You may find
@@ -43,7 +42,7 @@ import org.slf4j.LoggerFactory;
  * details see com.facebook.fb303.stats.HistoryManager.
  */
 public class StatsManager implements HistoryManager {
-  private static Logger logger = LoggerFactory.getLogger(StatsManager.class);
+  private static Logger logger = LoggerImpl.getLogger(StatsManager.class);
 
   private ConcurrentHashMap<String, Integer> typeMap;
   // todo: handle mutliple shortName/types
@@ -185,7 +184,7 @@ public class StatsManager implements HistoryManager {
           return counterMap.get(shortName).getMinuteRate();
         }
         if (ending2.equals(".count.60")) {
-          return counterMap.get(shortName).getMinuteSum();
+          return counterMap.get(shortName).getMinuteSamples();
         }
       }
 
@@ -200,7 +199,7 @@ public class StatsManager implements HistoryManager {
           return counterMap.get(shortName).getTenMinuteRate();
         }
         if (ending2.equals(".count.600")) {
-          return counterMap.get(shortName).getTenMinuteSum();
+          return counterMap.get(shortName).getTenMinuteSamples();
         }
       }
 
@@ -215,7 +214,7 @@ public class StatsManager implements HistoryManager {
           return counterMap.get(shortName).getHourRate();
         }
         if (ending2.equals(".count.3600")) {
-          return counterMap.get(shortName).getHourSum();
+          return counterMap.get(shortName).getHourSamples();
         }
       }
 
@@ -229,7 +228,7 @@ public class StatsManager implements HistoryManager {
         return counterMap.get(shortName).getAllTimeRate();
       }
       if (fullName.endsWith(".count")) {
-        return counterMap.get(shortName).getAllTimeSum();
+        return counterMap.get(shortName).getAllTimeSamples();
       }
     } catch (Exception e) {
       throw new IllegalArgumentException("Stat name '" + shortName

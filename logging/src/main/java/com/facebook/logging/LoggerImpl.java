@@ -18,10 +18,9 @@ package com.facebook.logging;
 import org.slf4j.LoggerFactory;
 
 /**
- * Logger with efficient var-args support.  Underlying logger is Log4j, but may be swapped to
+ * Logger with efficient var-args support.  Underlying logger is sl4j, but may be swapped to
  * any logger.
  */
-@Deprecated
 public class LoggerImpl implements Logger {
   private final org.slf4j.Logger logger;
 
@@ -52,16 +51,18 @@ public class LoggerImpl implements Logger {
    * to be doing hundreds of times a second;
    *
    * @return a logger for the current scope
-   *
-   * @deprecated Use {@link com.facebook.logging.util.LoggingUtil#getClassLogger()} instead
    */
-  @Deprecated
   public static Logger getClassLogger() {
     StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
     StackTraceElement element = stacktrace[2];
     String name = element.getClassName();
 
     return new LoggerImpl(LoggerFactory.getLogger(name));
+  }
+
+  @Override
+  public boolean isTraceEnabled() {
+    return logger.isTraceEnabled();
   }
 
   @Override
@@ -82,6 +83,20 @@ public class LoggerImpl implements Logger {
   @Override
   public boolean isErrorEnabled() {
     return logger.isErrorEnabled();
+  }
+
+  @Override
+  public void trace(String format, Object... args) {
+    if (logger.isTraceEnabled()) {
+      logger.trace(formatMessage(format, args));
+    }
+  }
+
+  @Override
+  public void trace(Throwable t, String format, Object... args) {
+    if (logger.isTraceEnabled()) {
+      logger.trace(formatMessage(format, args), t);
+    }
   }
 
   @Override

@@ -22,7 +22,7 @@ limitations under the License.
   <parent>
     <groupId>com.facebook.jcommon</groupId>
     <artifactId>jcommon-parent</artifactId>
-    <version>0.1.10-SNAPSHOT</version>
+    <version>0.1.26-SNAPSHOT</version>
   </parent>
 
   <artifactId>concurrency</artifactId>
@@ -48,12 +48,20 @@ limitations under the License.
     </dependency>
     <dependency>
       <groupId>com.facebook.jcommon</groupId>
+      <artifactId>logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.facebook.jcommon</groupId>
       <artifactId>testing</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>

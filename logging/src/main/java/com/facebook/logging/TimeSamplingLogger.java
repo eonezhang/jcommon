@@ -24,10 +24,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * decorates a FacebookLogger with  the ability to sample logging at a specified window size
  * (1 per time specified)
  *
- * @deprecated Use TimeSamplingLogger in the module logging-util instead. This implementation
- * is based on the in-house wrapper and the one on logging-util is based on SLF4J Logger.
  */
-@Deprecated
 public class TimeSamplingLogger implements Logger {
   private final Logger logger;
   private final long windowSizeMillis;
@@ -57,6 +54,11 @@ public class TimeSamplingLogger implements Logger {
   }
 
   @Override
+  public boolean isTraceEnabled() {
+    return logger.isTraceEnabled();
+  }
+
+  @Override
   public boolean isDebugEnabled() {
     return logger.isDebugEnabled();
   }
@@ -74,6 +76,20 @@ public class TimeSamplingLogger implements Logger {
   @Override
   public boolean isErrorEnabled() {
     return logger.isErrorEnabled();
+  }
+
+  @Override
+  public void trace(String format, Object... args) {
+    if (shouldLog()) {
+      logger.trace(format, args);
+    }
+  }
+
+  @Override
+  public void trace(Throwable t, String format, Object... args) {
+    if (shouldLog()) {
+      logger.trace(t, format, args);
+    }
   }
 
   @Override

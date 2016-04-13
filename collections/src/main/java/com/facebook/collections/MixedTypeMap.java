@@ -15,13 +15,12 @@
  */
 package com.facebook.collections;
 
-
 import com.google.common.reflect.TypeToken;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MixedTypeMap<K> {
+public class MixedTypeMap<K> implements ReadOnlyMixedTypeMap<K> {
   private final Map<Key<K, ?>, Object> map;
 
   public MixedTypeMap(Map<Key<K, ?>, Object> map) {
@@ -65,5 +64,19 @@ public class MixedTypeMap<K> {
   public <V> V get(Key<K, V> key) {
     //noinspection unchecked
     return (V) map.get(key);
+  }
+
+  public MixedTypeMap<K> putAll(MixedTypeMap<K> otherMap) {
+    map.putAll(otherMap.map);
+
+    return otherMap;
+  }
+
+  public int size() {
+    return map.size();
+  }
+
+  public void clear() {
+    map.clear();
   }
 }

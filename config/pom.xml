@@ -22,7 +22,7 @@ limitations under the License.
   <parent>
     <groupId>com.facebook.jcommon</groupId>
     <artifactId>jcommon-parent</artifactId>
-    <version>0.1.10-SNAPSHOT</version>
+    <version>0.1.26-SNAPSHOT</version>
   </parent>
 
   <artifactId>config</artifactId>
@@ -43,12 +43,16 @@ limitations under the License.
       <artifactId>collections-foundation</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
+      <groupId>com.facebook.jcommon</groupId>
+      <artifactId>logging</artifactId>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
     </dependency>
     <dependency>
       <groupId>joda-time</groupId>

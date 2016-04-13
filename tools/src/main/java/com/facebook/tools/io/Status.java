@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 Facebook, Inc.
+ * Copyright (C) 2014 Facebook, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,16 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.facebook.collections;
+package com.facebook.tools.io;
 
-/**
- * full function capability: take an input, product an output, and throw checked exceptions or even
- * Error types if necessary
- *
- * @param <K>
- * @param <V>
- * @param <E>
- */
-public interface Function<K, V, E extends Throwable> {
-  public V execute(K input) throws E;
+interface Status {
+  public void status(String line);
+
+  public void status(boolean value);
+
+  public void status(char value);
+
+  public void status(int value);
+
+  public void status(long value);
+
+  public void status(float value);
+
+  public void status(double value);
+
+  public void status(char[] value);
+
+  public void status(Object value);
+
+  public void statusf(String format, Object... args);
+
+  public void clearStatus();
 }
